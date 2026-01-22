@@ -2,6 +2,7 @@ from src.lics import LIC4, LIC6, LIC7, LicRule
 from src.types import Parameters_T, PointList
 
 
+
 class CmvBuilder:
     LicRules: dict[int, LicRule]
 
@@ -40,3 +41,4 @@ class CmvBuilder:
 DefaultCmvBuilder = (
     CmvBuilder().register_lic(LIC4()).register_lic(LIC6()).register_lic(LIC7())
 )
+
