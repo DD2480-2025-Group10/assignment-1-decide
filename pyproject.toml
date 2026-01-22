@@ -5,7 +5,7 @@ requires-python = ">=3"
 dependencies = []
 
 [project.optional-dependencies]
-dev = ["pytest>=7.0.0"]
+dev = ["pytest>=7.0.0", "pytest-cov>=7.0.0"]
 
 [build-system]
 requires = ["setuptools>=61.0"]
