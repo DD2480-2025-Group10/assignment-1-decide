@@ -84,6 +84,11 @@ def calculate_distance(p1: Point, p2: Point) -> float:
     """
     return math.dist(p1, p2)
 
+def dot_product(v1: Point, v2: Point) -> float:
+    return v1[0] * v2[0] + v1[1] * v2[1]
+
+def vector_magnitude(v: Point) -> float:
+    return math.sqrt(v[0]**2 + v[1]**2)
 
 def calculate_angle(p1: Point, vertex: Point, p3: Point) -> float:
     """
