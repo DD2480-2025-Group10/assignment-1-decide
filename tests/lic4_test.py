@@ -1,5 +1,6 @@
 from typing import List
-from src.main import Point, calculate_lic_4
+from src.cmv import calculate_lic_4
+from src.utils import Point
 
 # LIC 4 tests is a number of consecutive points lie in more than a specified number of quadrants
 
