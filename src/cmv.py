@@ -77,5 +77,17 @@ def calculate_lic_6(points: List[Point], n_pts: int, dist: float) -> bool:
 
     return False
 
+def calculate_lic_7(points: List[Point], k_pts: int, length1: float) -> bool:
+    if len(points) < 3:
+        return False
+
+    for i in range(len(points) - k_pts - 1):
+        A = points[i]
+        B = points[i + k_pts + 1]
+
+        if calculate_distance(A, B) > length1:
+            return True
+
+    return False
 
 
