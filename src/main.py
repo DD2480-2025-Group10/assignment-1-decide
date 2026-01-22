@@ -1,8 +1,10 @@
 from enum import Enum, auto
 import math
 from typing import List
+from typing import List, Tuple
 from dataclasses import dataclass
 
+Point = Tuple[float, float]
 
 #CONSTANTS
 Pi: float = 3.1415926535
@@ -46,8 +48,7 @@ class Parameters_T:
 
 PARAMETERS2: Parameters_T
 
-X: List[float]
-Y: List[float]
+POINTS: List[Point]
 
 
 NUMPOINTS: int
@@ -73,6 +74,50 @@ def double_compare(a: float, b: float, eps: float = 1e-6) -> COMPTYPE:
     if a < b:
         return COMPTYPE.LT
     return COMPTYPE.GT
+
+def calculate_distance(p1: Point, p2: Point) -> float:
+    """
+    Calculates the Euclidean distance between two points.
+
+    :param p1: The first point (x, y).
+    :param p2: The second point (x, y).
+    :return: The distance between p1 and p2 (float).
+    """
+    return math.dist(p1, p2)
+
+
+def calculate_angle(p1: Point, vertex: Point, p3: Point) -> float:
+    """
+    Calculates the angle <p1, vertex, p3> in radians.
+
+    :param p1: The first point (x, y).
+    :param vertex: The vertex point (x, y).
+    :param p3: The third point (x, y).
+    :return: The angle in radians in the range [0, PI]. Returns None if the vertex
+             coincides with p1 or p3 (undefined angle).
+    """
+    if (double_compare(p1[0], vertex[0]) == COMPTYPE.EQ and double_compare(p1[1], vertex[1]) == COMPTYPE.EQ) or \
+       (double_compare(p3[0], vertex[0]) == COMPTYPE.EQ and double_compare(p3[1], vertex[1]) == COMPTYPE.EQ):
+        return -1.0
+
+    x1, y1 = p1
+    xv, yv = vertex
+    x3, y3 = p3
+
+    ax, ay = x1 - xv, y1 - yv
+    bx, by = x3 - xv, y3 - yv
+
+    dot_product = ax * bx + ay * by
+    mag_a = math.sqrt(ax**2 + ay**2)
+    mag_b = math.sqrt(bx**2 + by**2)
+
+    if math.isclose(mag_a * mag_b, 0):
+        return None
+
+    cos_val = dot_product / (mag_a * mag_b)
+    cos_val = max(-1.0, min(1.0, cos_val))
+
+    return math.acos(cos_val)
 
 # function you must write
 def decide():
