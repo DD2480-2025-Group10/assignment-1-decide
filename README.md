@@ -1,3 +1,6 @@
+# Contributing
+Please read the guidelines on git-workflow in [`CONTRIBUTING.md`](CONTRIBUTING.md) to ensure consistency.
+
 # Setting up the project
 Create a virtual environment: 
 ```bash
