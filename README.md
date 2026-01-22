@@ -11,19 +11,15 @@ source .venv/bin/activate  # On Unix or MacOS
 
 Install dependencies:
 ```bash
-pip install -r requirements.txt
+pip install -e ".[dev]" # Installs both main and development dependencies
 ```
 
 ## Adding dependencies
-Add the dependency using pip:
+To add new dependencies, you need to update the **dependencies** list in `pyproject.toml`. After adding the new dependency, run the following command to install it:
 ```bash
-pip install <package-name>
+pip install -e .
 ```
 
-Freeze the current dependencies:
-```bash
-pip freeze > requirements.txt
-```
 
 # Testing the project
 Test files are located in the `tests` directory. Test files must be must be named according to the pattern `test_*.py` or `*_test.py`. To run the tests, use the following command:
