@@ -3,10 +3,6 @@ from src.types import Parameters_T, PointList
 
 # LIC 4 tests is a number of consecutive points lie in more than a specified number of quadrants
 
-class LIC4TestParams:
-    q_pts: int = 3
-    quads: int = 2
-
 def test_calculate_lic_4_positive():
     # Q1, Q2, Q3, Q1 (Start of list)
     points: PointList = [(1, 1), (-1, 1), (-1, -1), (1, 2)]
