@@ -75,6 +75,24 @@ def dot_product(v1: Point, v2: Point) -> float:
 def vector_magnitude(v: Point) -> float:
     return math.sqrt(v[0]**2 + v[1]**2)
 
+def calculate_triangle_area(p1: Point, p2: Point, p3: Point) -> float:
+    """
+    Calculate the area of the triangle defined by three points using the
+    shoelace formula.
+
+    :param p1: First point (x, y)
+    :param p2: Second point (x, y)
+    :param p3: Third point (x, y)
+    :return: Area of the triangle (float)
+    """
+    x1, y1 = p1
+    x2, y2 = p2
+    x3, y3 = p3
+
+    area = math.fabs(x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2)) / 2
+
+    return area
+
 def calculate_angle(p1: Point, vertex: Point, p3: Point) -> Optional[float]:
     """
     Calculates the angle <p1, vertex, p3> in radians.
