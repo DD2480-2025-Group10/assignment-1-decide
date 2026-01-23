@@ -1,8 +1,9 @@
 from dataclasses import dataclass
 from typing import Protocol
 
-from src.plane_utils import Quadrant, Ray, calculate_distance, vector_magnitude
-from src.types import Parameters_T, PointList
+from src.plane_utils import Quadrant, Ray, calculate_distance, vector_magnitude, calculate_triangle_area
+from src.types import Parameters_T, PointList, COMPTYPE
+from src.utils import double_compare
 
 
 # Protocol for LIC Rule classes
@@ -25,6 +26,21 @@ class LicRule(Protocol):
 # Conctete LIC Rule Implementations
 # **********************************
 
+@dataclass(frozen=True)
+class LIC3:
+    ident: int = 3
+
+    '''
+    Evaluates LIC3: There exists at least one set of three consecutive data 
+    points that are the vertices of a triangle with area greater than AREA1.
+    (0 ≤ AREA1)
+    '''
+    def evaluate(self, points: PointList, params: Parameters_T) -> bool:
+        for i in range(0, len(points) - 2):
+            area = calculate_triangle_area(points[i], points[i+1], points[i+2])
+            if double_compare(area,params.area) == COMPTYPE.GT :
+                return True
+        return False
 
 @dataclass(frozen=True)
 class LIC4:
