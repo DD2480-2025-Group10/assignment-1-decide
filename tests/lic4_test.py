@@ -1,26 +1,25 @@
-from typing import List
-from src.cmv import calculate_lic_4
-from src.utils import Point
+from src.lics import LIC4
+from src.types import Parameters_T, PointList
 
 # LIC 4 tests is a number of consecutive points lie in more than a specified number of quadrants
 
 def test_calculate_lic_4_positive():
     # Q1, Q2, Q3, Q1 (Start of list)
-    points: List[Point] = [(1, 1), (-1, 1), (-1, -1), (1, 2)]
-    q_pts = 3
-    quads = 2
+    points: PointList = [(1, 1), (-1, 1), (-1, -1), (1, 2)]
+    params = Parameters_T(quads= 2, q_pts=3)
+
     # There the first three points lie in more than 2 quadrants
-    assert calculate_lic_4(points, q_pts, quads) == True
+    assert LIC4().evaluate(points, params) == True
 
     # Q1, Q1, Q2, Q3 (End of list)
-    points: List[Point] = [(1, 2), (1, 1), (-1, 1), (-1, -1)]
+    points: PointList = [(1, 2), (1, 1), (-1, 1), (-1, -1)]
     # The last three points lie in more than 2 quadrants
-    assert calculate_lic_4(points, q_pts, quads) == True
+    assert LIC4().evaluate(points, params) == True
 
 def test_calculate_lic_4_negative():
     # Q1, Q1, Q2
-    points: List[Point] = [(1, 1), (0, 0), (-1, -1)]
-    q_pts = 3
-    quads = 2
+    points: PointList = [(1, 1), (0, 0), (-1, -1)]
+    params = Parameters_T(quads= 2, q_pts=3)
+
     # No set of 3 consecutive points lie in more than 2 quadrants
-    assert calculate_lic_4(points, q_pts, quads) == False
+    assert LIC4().evaluate(points, params) == False
