@@ -38,6 +38,11 @@ To format all Python files in the project:
 ruff format .
 ```
 
+To check for linting issues and auto-fix them:
+```bash
+ruff check --fix .
+```
+
 To check if code is properly formatted (without making changes):
 ```bash
 ruff format --check .
