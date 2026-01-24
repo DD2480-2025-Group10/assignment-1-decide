@@ -1,7 +1,6 @@
 from src.lics import LIC3
 from src.types import Parameters_T, PointList
 
-
 # LIC3 tests: check whether there exists any set of three consecutive points
 # whose triangle area is greater than the parameter `area`.
 
