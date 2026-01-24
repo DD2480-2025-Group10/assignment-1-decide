@@ -1,4 +1,3 @@
-
 from src.lics import LIC4, LIC6, LIC7, LicRule
 from src.types import Parameters_T, PointList
 
