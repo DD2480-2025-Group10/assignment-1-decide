@@ -2,7 +2,7 @@ from dataclasses import dataclass
 from typing import Protocol
 
 from src.plane_utils import Quadrant, Ray, calculate_distance, vector_magnitude, calculate_triangle_area
-from src.types import Parameters_T, PointList, COMPTYPE
+from src.types import Parameters_T, Point, PointList, COMPTYPE
 from src.utils import double_compare
 
 
@@ -27,11 +27,64 @@ class LicRule(Protocol):
 # **********************************
 
 @dataclass(frozen=True)
+class LIC1:
+    ident: int = 1
+
+    def evaluate(self, points: PointList, params: Parameters_T) -> bool:
+        R = params.radius1
+
+        if len(points) < 3:
+            return False
+
+        for i in range(len(points) - 2):
+            p1, p2, p3 = points[i], points[i + 1], points[i + 2]
+            if not self.three_points_fit_in_circle(p1, p2, p3, R):
+                return True
+
+        return False
+
+    @staticmethod
+    def three_points_fit_in_circle(p1: Point, p2: Point, p3: Point, R: float) -> bool:
+        a = calculate_distance(p2, p3)
+        b = calculate_distance(p1, p3)
+        c = calculate_distance(p1, p2)
+
+        if (
+            double_compare(a, 0.0) == COMPTYPE.EQ
+            and double_compare(b, 0.0) == COMPTYPE.EQ
+            and double_compare(c, 0.0) == COMPTYPE.EQ
+        ):
+            return True
+
+        area = calculate_triangle_area(p1, p2, p3)
+
+        # collinear
+        if double_compare(area, 0.0) == COMPTYPE.EQ:
+            required = max(a, b, c) / 2.0
+            return double_compare(required, R) != COMPTYPE.GT
+
+        a2, b2, c2 = a * a, b * b, c * c
+
+        # obtuse or right
+        if (
+            double_compare(a2 + b2, c2) != COMPTYPE.GT
+            or double_compare(a2 + c2, b2) != COMPTYPE.GT
+            or double_compare(b2 + c2, a2) != COMPTYPE.GT
+        ):
+            required = max(a, b, c) / 2.0
+            return double_compare(required, R) != COMPTYPE.GT
+
+        # acute
+        circumradius = (a * b * c) / (4.0 * area)
+        return double_compare(circumradius, R) != COMPTYPE.GT
+
+
+@dataclass(frozen=True)
 class LIC3:
     ident: int = 3
 
     '''
-    Evaluates LIC3: There exists at least one set of three consecutive data 
+    Evaluates LIC3: There exists at least one set of three consecutive data
     points that are the vertices of a triangle with area greater than AREA1.
     (0 ≤ AREA1)
     '''
