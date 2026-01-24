@@ -29,3 +29,22 @@ Test files are located in the `tests` directory. Test files must be must be name
 ```bash
 pytest
 ```
+
+# Code formatting
+This project uses [Ruff](https://docs.astral.sh/ruff/) for code formatting and linting. The formatting configuration is defined in `pyproject.toml`.
+
+To format all Python files in the project:
+```bash
+ruff format .
+```
+
+To check for linting issues and auto-fix them:
+```bash
+ruff check --fix .
+```
+
+To check if code is properly formatted (without making changes):
+```bash
+ruff format --check .
+ruff check .
+```
