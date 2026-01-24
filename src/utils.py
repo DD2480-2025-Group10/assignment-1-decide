@@ -1,7 +1,8 @@
 import math
+
 from src.types import *
 
-#CONSTANTS
+# CONSTANTS
 Pi: float = 3.1415926535
 
 # GLOBAL VARIABLES
@@ -26,6 +27,7 @@ FUV: List[bool]
 
 LAUNCH: bool
 
+
 # floating point
 def double_compare(a: float, b: float, eps: float = 1e-6) -> COMPTYPE:
     if math.fabs(a - b) < eps:
@@ -33,4 +35,3 @@ def double_compare(a: float, b: float, eps: float = 1e-6) -> COMPTYPE:
     if a < b:
         return COMPTYPE.LT
     return COMPTYPE.GT
-

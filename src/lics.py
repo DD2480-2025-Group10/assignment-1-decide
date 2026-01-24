@@ -1,8 +1,14 @@
 from dataclasses import dataclass
 from typing import Protocol
 
-from src.plane_utils import Quadrant, Ray, calculate_distance, vector_magnitude, calculate_triangle_area
-from src.types import Parameters_T, Point, PointList, COMPTYPE
+from src.plane_utils import (
+    Quadrant,
+    Ray,
+    calculate_distance,
+    calculate_triangle_area,
+    vector_magnitude,
+)
+from src.types import COMPTYPE, Parameters_T, Point, PointList
 from src.utils import double_compare
 
 
@@ -13,18 +19,18 @@ class LicRule(Protocol):
     # this is to make sure each rule is ordered correctly.
     # :Use the indetifier from the respective LICS rule set (ex. LIC2 -> 2)
     @property
-    def ident(self) -> int:
-        ...
+    def ident(self) -> int: ...
 
-    # Evaluete function for the LIC rule. 
+    # Evaluete function for the LIC rule.
     # :Param points: List of points to evaluate the rule on
     # :Param params: Parameters_T object containing all parameters
-    def evaluate(self, points: PointList, params: Parameters_T) -> bool:
-        ...
+    def evaluate(self, points: PointList, params: Parameters_T) -> bool: ...
+
 
 # **********************************
 # Conctete LIC Rule Implementations
 # **********************************
+
 
 @dataclass(frozen=True)
 class LIC1:
@@ -83,17 +89,19 @@ class LIC1:
 class LIC3:
     ident: int = 3
 
-    '''
-    Evaluates LIC3: There exists at least one set of three consecutive data 
+    """
+    Evaluates LIC3: There exists at least one set of three consecutive data
     points that are the vertices of a triangle with area greater than AREA1.
     (0 ≤ AREA1)
-    '''
+    """
+
     def evaluate(self, points: PointList, params: Parameters_T) -> bool:
         for i in range(0, len(points) - 2):
-            area = calculate_triangle_area(points[i], points[i+1], points[i+2])
-            if double_compare(area,params.area) == COMPTYPE.GT :
+            area = calculate_triangle_area(points[i], points[i + 1], points[i + 2])
+            if double_compare(area, params.area) == COMPTYPE.GT:
                 return True
         return False
+
 
 @dataclass(frozen=True)
 class LIC4:
@@ -105,16 +113,18 @@ class LIC4:
     lie in separate quartants, such that the number of quartants is greater
     than QUADS.
     """
+
     def evaluate(self, points: PointList, params: Parameters_T) -> bool:
         quadrants = [Quadrant.from_point(point) for point in points]
 
         for i in range(len(quadrants) - params.q_pts + 1):
-            unique_quadrants = set(quadrants[i:i + params.q_pts])
+            unique_quadrants = set(quadrants[i : i + params.q_pts])
 
             if len(unique_quadrants) > params.quads:
                 return True
 
         return False
+
 
 @dataclass(frozen=True)
 class LIC6:
@@ -131,7 +141,7 @@ class LIC6:
             return False
 
         for i in range(len(points) - params.n_pts + 1):
-            point_slice = points[i:i + params.n_pts]
+            point_slice = points[i : i + params.n_pts]
             A = point_slice[0]
             B = point_slice[-1]
 
@@ -146,6 +156,7 @@ class LIC6:
                     return True
 
         return False
+
 
 @dataclass(frozen=True)
 class LIC7:

@@ -1,16 +1,16 @@
 import json
 from dataclasses import dataclass
-from typing import List, Dict, Any
+from typing import Any
 
 
 @dataclass
 class Data:
     numpoints: int
-    x: List[float]
-    y: List[float]
-    parameters: Dict[str, Any]
-    lcm: Dict[str, Any]
-    puv: List[int]
+    x: list[float]
+    y: list[float]
+    parameters: dict[str, Any]
+    lcm: dict[str, Any]
+    puv: list[int]
     expected_launch: bool
 
 
@@ -25,10 +25,11 @@ def load_data(path: str) -> Data:
         parameters=data["PARAMETERS"],
         lcm=data["LCM"],
         puv=data["PUV"],
-        expected_launch=bool(data["EXPECTED"]["LAUNCH"])
+        expected_launch=bool(data["EXPECTED"]["LAUNCH"]),
     )
 
+
 def test_example():
-    d = (load_data("./tests/whole_program_cases/case0_false.json"))
+    d = load_data("./tests/whole_program_cases/case0_false.json")
     if d != None:
-      assert True
+        assert True
