@@ -84,7 +84,7 @@ class LIC3:
     ident: int = 3
 
     '''
-    Evaluates LIC3: There exists at least one set of three consecutive data
+    Evaluates LIC3: There exists at least one set of three consecutive data 
     points that are the vertices of a triangle with area greater than AREA1.
     (0 ≤ AREA1)
     '''
