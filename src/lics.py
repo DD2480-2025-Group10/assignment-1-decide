@@ -264,6 +264,33 @@ class LIC10:
                 return True
         return False
 
+@dataclass(frozen=True)
+class LIC12:
+    ident: int = 13
+
+    """
+    Evaluates LIC12: There exists at least one set of two points speaated by exactly K_pts consecuteve intervening points,
+    that are a distance greater than LENGTH1 apart. Also there exists at least one set of two data points 
+    separated by exactly K_pts consecutive intervening points, that are a distance less than LENGTH2 apart.
+    """
+
+    def evaluate(self, points: PointList, params: Parameters_T) -> bool:
+        if len(points) < 3:
+            return False
+
+        longer_found = False
+        shorter_found = False
+
+        for i in range(len(points) - params.k_pts - 1):
+            A = points[i]
+            B = points[i + params.k_pts + 1]
+            dist = calculate_distance(A, B)
+
+            longer_found = longer_found or dist > params.length1
+            shorter_found = shorter_found or dist < params.length2
+
+        return longer_found and shorter_found
+
 
 @dataclass(frozen=True)
 class LIC13:
