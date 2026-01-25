@@ -86,7 +86,7 @@ class LIC2:
     def evaluate(self, points: PointList, params: Parameters_T) -> bool:
         if len(points) < 3:
             return False
-        
+
         epsilon = params.epsilon
 
         for i in range(len(points) - 2):
@@ -97,12 +97,14 @@ class LIC2:
             angle = calculate_angle(p1, vertex, p3)
 
             if angle < 0 or angle is None:
-                continue # Undefined angle
+                continue  # Undefined angle
 
-            if (double_compare(angle, math.pi - epsilon) == COMPTYPE.LT or
-                double_compare(angle, math.pi + epsilon) == COMPTYPE.GT):
+            if (
+                double_compare(angle, math.pi - epsilon) == COMPTYPE.LT
+                or double_compare(angle, math.pi + epsilon) == COMPTYPE.GT
+            ):
                 return True
-            
+
         return False
 
 
