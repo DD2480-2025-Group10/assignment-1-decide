@@ -1,0 +1,33 @@
+[project]
+name = "Launch-Interceptor"
+version = "0.1.0"
+requires-python = ">=3"
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0.0", "pytest-cov>=7.0.0", "ruff>=0.1.0"]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*", "tests*"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W", "UP", "B", "SIM", "C4"]
+ignore = []
+
+[tool.ruff.lint.isort]
+known-first-party = ["src", "tests"]

@@ -1,0 +1,41 @@
+{
+  "NUMPOINTS": 0,
+  "X": [],
+  "Y": [],
+
+  "PARAMETERS": {
+    "length1": 0.0,
+    "radius1": 0.0,
+    "epsilon": 0.0,
+    "area": 0.0,
+    "q_pts": 0,
+    "quads": 0,
+    "dist": 0.0,
+    "n_pts": 0,
+    "k_pts": 0,
+    "a_pts": 0,
+    "b_pts": 0,
+    "c_pts": 0,
+    "d_pts": 0,
+    "e_pts": 0,
+    "f_pts": 0,
+    "g_pts": 0,
+    "length2": 0.0,
+    "radius2": 0.0,
+    "area2": 0.0
+  },
+
+  "LCM": {
+  "default": "NOTUSED",
+  "overrides": [
+    { "i": 0, "j": 0, "value": "ANDD" },
+    { "i": 2, "j": 3, "value": "ORR" }
+  ]
+}
+,
+  "PUV": [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+
+  "EXPECTED": {
+    "LAUNCH": true
+  }
+}
