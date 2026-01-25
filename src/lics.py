@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from typing import Protocol
+import math
 
 from src.plane_utils import (
     Quadrant,
@@ -8,6 +9,7 @@ from src.plane_utils import (
     calculate_triangle_area,
     three_points_fit_in_circle,
     vector_magnitude,
+    calculate_angle,
 )
 from src.types import COMPTYPE, Parameters_T, PointList
 from src.utils import double_compare
@@ -65,6 +67,42 @@ class LIC1:
         for i in range(len(points) - 2):
             p1, p2, p3 = points[i], points[i + 1], points[i + 2]
             if not three_points_fit_in_circle(p1, p2, p3, radius):
+                return True
+
+        return False
+
+
+@dataclass(frozen=True)
+class LIC2:
+    ident: int = 2
+    """
+    There exists at least one set of three consecutive data points which form an angle 
+    such that: angle < (PI - EPSILON) or angle > (PI + EPSILON) 
+    The second of the three consecutive points is always the vertex of the angle. 
+    If either the first point or the last point (or both) coincides with the vertex, 
+    the angle is undefined and the LIC is not satisfied by those three points.
+    """
+
+    def evaluate(self, points: PointList, params: Parameters_T) -> bool:
+        if len(points) < 3:
+            return False
+
+        epsilon = params.epsilon
+
+        for i in range(len(points) - 2):
+            p1 = points[i]
+            vertex = points[i + 1]
+            p3 = points[i + 2]
+
+            angle = calculate_angle(p1, vertex, p3)
+
+            if angle < 0 or angle is None:
+                continue  # Undefined angle
+
+            if (
+                double_compare(angle, math.pi - epsilon) == COMPTYPE.LT
+                or double_compare(angle, math.pi + epsilon) == COMPTYPE.GT
+            ):
                 return True
 
         return False
