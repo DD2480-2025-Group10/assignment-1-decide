@@ -6,9 +6,10 @@ from src.plane_utils import (
     Ray,
     calculate_distance,
     calculate_triangle_area,
+    three_points_fit_in_circle,
     vector_magnitude,
 )
-from src.types import COMPTYPE, Parameters_T, Point, PointList
+from src.types import COMPTYPE, Parameters_T, PointList
 from src.utils import double_compare
 
 
@@ -37,52 +38,17 @@ class LIC1:
     ident: int = 1
 
     def evaluate(self, points: PointList, params: Parameters_T) -> bool:
-        R = params.radius1
+        radius = params.radius1
 
         if len(points) < 3:
             return False
 
         for i in range(len(points) - 2):
             p1, p2, p3 = points[i], points[i + 1], points[i + 2]
-            if not self.three_points_fit_in_circle(p1, p2, p3, R):
+            if not three_points_fit_in_circle(p1, p2, p3, radius):
                 return True
 
         return False
-
-    @staticmethod
-    def three_points_fit_in_circle(p1: Point, p2: Point, p3: Point, R: float) -> bool:
-        a = calculate_distance(p2, p3)
-        b = calculate_distance(p1, p3)
-        c = calculate_distance(p1, p2)
-
-        if (
-            double_compare(a, 0.0) == COMPTYPE.EQ
-            and double_compare(b, 0.0) == COMPTYPE.EQ
-            and double_compare(c, 0.0) == COMPTYPE.EQ
-        ):
-            return True
-
-        area = calculate_triangle_area(p1, p2, p3)
-
-        # collinear
-        if double_compare(area, 0.0) == COMPTYPE.EQ:
-            required = max(a, b, c) / 2.0
-            return double_compare(required, R) != COMPTYPE.GT
-
-        a2, b2, c2 = a * a, b * b, c * c
-
-        # obtuse or right
-        if (
-            double_compare(a2 + b2, c2) != COMPTYPE.GT
-            or double_compare(a2 + c2, b2) != COMPTYPE.GT
-            or double_compare(b2 + c2, a2) != COMPTYPE.GT
-        ):
-            required = max(a, b, c) / 2.0
-            return double_compare(required, R) != COMPTYPE.GT
-
-        # acute
-        circumradius = (a * b * c) / (4.0 * area)
-        return double_compare(circumradius, R) != COMPTYPE.GT
 
 
 @dataclass(frozen=True)
@@ -176,6 +142,40 @@ class LIC7:
             B = points[i + params.k_pts + 1]
 
             if calculate_distance(A, B) > params.length1:
+                return True
+
+        return False
+
+
+@dataclass(frozen=True)
+class LIC8:
+    ident: int = 8
+
+    """
+    Evaluates LIC8: There exists at least one set of three data points separated by
+    exactly A PTS and B PTS consecutive intervening points, respectively, that cannot
+    be contained within or on a circle ofradius RADIUS1. The condition is not met when
+    NUMPOINTS < 5.
+    """
+
+    def evaluate(self, points: PointList, params: Parameters_T) -> bool:
+        if len(points) < 5:
+            return False
+
+        a_pts = params.a_pts
+        b_pts = params.b_pts
+        radius = params.radius1
+
+        max_i = len(points) - (a_pts + b_pts + 3)
+        if max_i < 0:
+            return False
+
+        for i in range(max_i + 1):
+            p1 = points[i]
+            p2 = points[i + a_pts + 1]
+            p3 = points[i + a_pts + b_pts + 2]
+
+            if not three_points_fit_in_circle(p1, p2, p3, radius):
                 return True
 
         return False

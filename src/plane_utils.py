@@ -99,6 +99,41 @@ def calculate_triangle_area(p1: Point, p2: Point, p3: Point) -> float:
     return area
 
 
+def three_points_fit_in_circle(p1: Point, p2: Point, p3: Point, radius: float) -> bool:
+    a = calculate_distance(p2, p3)
+    b = calculate_distance(p1, p3)
+    c = calculate_distance(p1, p2)
+
+    if (
+        double_compare(a, 0.0) == COMPTYPE.EQ
+        and double_compare(b, 0.0) == COMPTYPE.EQ
+        and double_compare(c, 0.0) == COMPTYPE.EQ
+    ):
+        return True
+
+    area = calculate_triangle_area(p1, p2, p3)
+
+    # collinear
+    if double_compare(area, 0.0) == COMPTYPE.EQ:
+        required = max(a, b, c) / 2.0
+        return double_compare(required, radius) != COMPTYPE.GT
+
+    a2, b2, c2 = a * a, b * b, c * c
+
+    # obtuse or right
+    if (
+        double_compare(a2 + b2, c2) != COMPTYPE.GT
+        or double_compare(a2 + c2, b2) != COMPTYPE.GT
+        or double_compare(b2 + c2, a2) != COMPTYPE.GT
+    ):
+        required = max(a, b, c) / 2.0
+        return double_compare(required, radius) != COMPTYPE.GT
+
+    # acute
+    circumradius = (a * b * c) / (4.0 * area)
+    return double_compare(circumradius, radius) != COMPTYPE.GT
+
+
 def calculate_angle(p1: Point, vertex: Point, p3: Point) -> float | None:
     """
     Calculates the angle <p1, vertex, p3> in radians.
