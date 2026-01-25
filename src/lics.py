@@ -310,3 +310,39 @@ class LIC13:
                 return True
 
         return False
+
+
+@dataclass(frozen=True)
+class LIC14:
+    ident: int = 14
+    """
+    There exists at least one set of three data points, separated by exactly E PTS and F PTS con-
+    secutive intervening points, respectively, that are the vertices of a triangle with area greater
+    than AREA1. In addition, there exist three data points (which can be the same or different
+    from the three data points just mentioned) separated by exactly E PTS and F PTS consec-
+    utive intervening points, respectively, that are the vertices of a triangle with area less than
+    AREA2. Both parts must be true for the LIC to be true. The condition is not met when
+    NUMPOINTS < 5.
+    0 ≤ AREA2
+    """
+
+    def evaluate(self, points: PointList, params: Parameters_T) -> bool:
+        if len(points) < 5:
+            return False
+
+        e_pts = params.e_pts
+        f_pts = params.f_pts
+        check_area1 = False
+        check_area2 = False
+
+        for i in range(len(points) - f_pts - e_pts - 2):
+            area = calculate_triangle_area(
+                points[i], points[i + e_pts + 1], points[i + e_pts + f_pts + 2]
+            )
+            if double_compare(area, params.area) == COMPTYPE.GT:
+                check_area1 = True
+            if double_compare(area, params.area2) == COMPTYPE.LT:
+                check_area2 = True
+            if check_area1 and check_area2:
+                return True
+        return check_area1 and check_area2
