@@ -1,6 +1,5 @@
-from src.lics import LIC4, LIC6, LIC7, LicRule
+from src.lics import LIC0, LIC4, LIC6, LIC7, LicRule
 from src.types import Parameters_T, PointList
-
 
 
 class CmvBuilder:
@@ -39,6 +38,9 @@ class CmvBuilder:
 # Add LICS to the default builder, other code can then inport this singleton and
 # use it to build the CMV directly.
 DefaultCmvBuilder = (
-    CmvBuilder().register_lic(LIC4()).register_lic(LIC6()).register_lic(LIC7())
+    CmvBuilder()
+    .register_lic(LIC0())
+    .register_lic(LIC4())
+    .register_lic(LIC6())
+    .register_lic(LIC7())
 )
-
