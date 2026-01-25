@@ -264,6 +264,7 @@ class LIC10:
                 return True
         return False
 
+
 @dataclass(frozen=True)
 class LIC12:
     ident: int = 13

@@ -48,5 +48,3 @@ def test_calculate_lic_13_negative():
     points = [(0.0, 0.0), (0.5, 0.0), (1.0, 0.0)]
 
     assert LIC12().evaluate(points, params) is False
-
-
