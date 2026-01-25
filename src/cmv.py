@@ -1,4 +1,4 @@
-from src.lics import LIC0, LIC4, LIC6, LIC7, LicRule
+from src.lics import LIC0, LIC2, LIC4, LIC6, LIC7, LicRule
 from src.types import Parameters_T, PointList
 
 
@@ -40,6 +40,7 @@ class CmvBuilder:
 DefaultCmvBuilder = (
     CmvBuilder()
     .register_lic(LIC0())
+    .register_lic(LIC2())
     .register_lic(LIC4())
     .register_lic(LIC6())
     .register_lic(LIC7())
