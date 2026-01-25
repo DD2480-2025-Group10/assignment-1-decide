@@ -1,6 +1,6 @@
 import math
 
-from src.types import *
+from src.types import COMPTYPE, CONNECTORS, Parameters_T, PointList
 
 # CONSTANTS
 Pi: float = 3.1415926535
@@ -14,16 +14,16 @@ POINTS: PointList
 NUMPOINTS: int
 
 # 2D array of [15, 15] CONNECTORS
-LCM: List[List[CONNECTORS]]
+LCM: list[list[CONNECTORS]]
 
 # 2D array of [15, 15] booleans
-PUM: List[List[bool]]
+PUM: list[list[bool]]
 
 # array of 15 booleans
-CMV: List[bool]
+CMV: list[bool]
 
 # array of 15 booleans
-FUV: List[bool]
+FUV: list[bool]
 
 LAUNCH: bool
 
