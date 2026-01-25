@@ -179,3 +179,50 @@ class LIC8:
                 return True
 
         return False
+
+
+@dataclass(frozen=True)
+class LIC13:
+    ident: int = 13
+    """
+    There exists at least one set of three data points,
+    separated by exactly A PTS and B PTS consecutive intervening points, respectively,
+    that cannot be contained within or on a circle of radius RADIUS1. In addition,
+    there exists at least one set of three data points (which can be the same or
+    different from the three data points just mentioned) separated by exactly A PTS
+    and B PTS consecutive intervening points, respectively, that can be contained in or
+    on a circle of radius RADIUS2. Both parts must be true for the LIC to be true.
+    The condition is not met when NUMPOINTS < 5.
+    """
+
+    def evaluate(self, points: PointList, params: Parameters_T) -> bool:
+        if len(points) < 5:
+            return False
+
+        a_pts = params.a_pts
+        b_pts = params.b_pts
+
+        max_i = len(points) - (a_pts + b_pts + 3)
+        if max_i < 0:
+            return False
+
+        found_cannot_radius1 = False
+        found_can_radius2 = False
+
+        for i in range(max_i + 1):
+            p1 = points[i]
+            p2 = points[i + a_pts + 1]
+            p3 = points[i + a_pts + b_pts + 2]
+
+            fits_r1 = three_points_fit_in_circle(p1, p2, p3, params.radius1)
+            fits_r2 = three_points_fit_in_circle(p1, p2, p3, params.radius2)
+
+            if not fits_r1:
+                found_cannot_radius1 = True
+            if fits_r2:
+                found_can_radius2 = True
+
+            if found_cannot_radius1 and found_can_radius2:
+                return True
+
+        return False
