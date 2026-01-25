@@ -96,7 +96,7 @@ class LIC2:
 
             angle = calculate_angle(p1, vertex, p3)
 
-            if angle < 0 or angle is None:
+            if angle is None or angle < 0:
                 continue  # Undefined angle
 
             if (
