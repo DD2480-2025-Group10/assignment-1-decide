@@ -239,6 +239,33 @@ class LIC8:
 
 
 @dataclass(frozen=True)
+class LIC10:
+    ident: int = 10
+    """
+    There exists at least one set of three data points separated by exactly E PTS and F PTS con-
+    secutive intervening points, respectively, that are the vertices of a triangle with area greater
+    than AREA1. The condition is not met when NUMPOINTS < 5.
+    1 ≤ E PTS, 1 ≤ F PTS
+    E PTS + F PTS ≤ NUMPOINTS − 3
+    """
+
+    def evaluate(self, points: PointList, params: Parameters_T) -> bool:
+        if len(points) < 5:
+            return False
+
+        e_pts = params.e_pts
+        f_pts = params.f_pts
+
+        for i in range(len(points) - f_pts - e_pts - 2):
+            area = calculate_triangle_area(
+                points[i], points[i + e_pts + 1], points[i + e_pts + f_pts + 2]
+            )
+            if double_compare(area, params.area) == COMPTYPE.GT:
+                return True
+        return False
+
+
+@dataclass(frozen=True)
 class LIC13:
     ident: int = 13
     """
