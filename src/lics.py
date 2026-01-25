@@ -31,6 +31,25 @@ class LicRule(Protocol):
 # **********************************
 # Conctete LIC Rule Implementations
 # **********************************
+@dataclass(frozen=True)
+class LIC0:
+    ident: int = 0
+    """
+    Evaluates LIC0: There exists at least one set of two consecutive data points 
+    such that the distance between them is greater than LENGTH1. (0 ≤ LENGTH1)
+    """
+
+    def evaluate(self, points: PointList, params: Parameters_T) -> bool:
+        if len(points) < 2:
+            return False
+
+        for i in range(len(points) - 1):
+            p1 = points[i]
+            p2 = points[i + 1]
+            if calculate_distance(p1, p2) > params.length1:
+                return True
+
+        return False
 
 
 @dataclass(frozen=True)
