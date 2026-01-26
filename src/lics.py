@@ -301,6 +301,32 @@ class LIC10:
 
 
 @dataclass(frozen=True)
+class LIC11:
+    ident: int = 11
+    """
+    Evaluates LIC11: There exists at least one set of two data points, (X[i],Y[i]) and (X[j],Y[j]), separated by
+    exactly G PTS consecutive intervening points, such that X[j] - X[i] < 0. (where i < j ) The
+    condition is not met when NUMPOINTS < 3. 1 ≤ G PTS ≤ NUMPOINTS-2
+    """
+    def evaluate(self, points: PointList, params: Parameters_T) -> bool:
+        
+        if len(points) < 3:
+            return False
+        
+        g_pts = params.g_pts
+
+        for i in range(len(points) - g_pts - 1):
+            j = points[i + g_pts + 1]
+            xi, _ = points[i]
+            xj, _ = points[j]
+
+            if xj - xi < 0:
+                return True
+        
+        return False
+
+        
+@dataclass(frozen=True)
 class LIC12:
     ident: int = 12
 
