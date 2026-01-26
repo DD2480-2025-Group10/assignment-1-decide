@@ -2,6 +2,7 @@ from src.lics import (
     LIC0,
     LIC1,
     LIC10,
+    LIC11,
     LIC12,
     LIC13,
     LIC14,
@@ -64,7 +65,7 @@ DefaultCmvBuilder = (
     .register_lic(LIC8())
     # Add LIC9 later
     .register_lic(LIC10())
-    # Add LIC11 later
+    .register_lic(LIC11())
     .register_lic(LIC12())
     .register_lic(LIC13())
     .register_lic(LIC14())
