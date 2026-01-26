@@ -29,7 +29,3 @@ def load_data(path: str) -> Data:
     )
 
 
-def test_example():
-    d = load_data("./tests/whole_program_cases/case0_false.json")
-    if d != None:
-        assert True
