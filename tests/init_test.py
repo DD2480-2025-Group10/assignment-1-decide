@@ -27,9 +27,3 @@ def load_data(path: str) -> Data:
         puv=data["PUV"],
         expected_launch=bool(data["EXPECTED"]["LAUNCH"]),
     )
-
-
-def test_example():
-    d = load_data("./tests/whole_program_cases/case0_false.json")
-    if d != None:
-        assert True
