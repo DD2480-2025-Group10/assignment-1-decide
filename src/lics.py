@@ -267,7 +267,7 @@ class LIC10:
 
 @dataclass(frozen=True)
 class LIC12:
-    ident: int = 13
+    ident: int = 12
 
     """
     Evaluates LIC12: There exists at least one set of two points speaated by exactly K_pts consecuteve intervening points,
