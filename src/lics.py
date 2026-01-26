@@ -316,13 +316,12 @@ class LIC11:
         g_pts = params.g_pts
 
         for i in range(len(points) - g_pts - 1):
-            j = points[i + g_pts + 1]
-            xi, _ = points[i]
-            xj, _ = points[j]
+            A = points[i] # first point i
+            B = points[i + params.g_pts + 1] # second point j
 
-            if xj - xi < 0:
+            if B[0] - A[0] < 0:
                 return True
-        
+            
         return False
 
         
