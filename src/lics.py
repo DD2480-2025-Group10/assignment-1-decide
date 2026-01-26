@@ -12,7 +12,7 @@ from src.plane_utils import (
     calculate_angle,
 )
 from src.types import COMPTYPE, Parameters_T, PointList
-from src.utils import double_compare
+from src.utils import Pi, double_compare
 
 
 # Protocol for LIC Rule classes
@@ -233,6 +233,41 @@ class LIC8:
             p3 = points[i + a_pts + b_pts + 2]
 
             if not three_points_fit_in_circle(p1, p2, p3, radius):
+                return True
+
+        return False
+
+
+@dataclass(frozen=True)
+class LIC9:
+    ident: int = 9
+
+    """
+    There exists at least one set of three data points separated by exactly C_PTS and D_PTS
+    consecutive intervening points, respectively, that form an angle such that:
+    angle < (PI−EPSILON) or angle > (PI+EPSILON)
+    The second point of the set of three points is always the vertex of the angle. If either the first
+    point or the last point (or both) coincide with the vertex, the angle is undefined and the LIC
+    is not satisfied by those three points. When NUMPOINTS < 5, the condition is not met.
+    """
+
+    def evaluate(self, points: PointList, params: Parameters_T) -> bool:
+        if len(points) < 5:
+            return False
+
+        condition1 = lambda x: x < Pi - params.epsilon
+        condition2 = lambda x: x > Pi + params.epsilon
+        angleInTolerance = lambda x: condition1(x) or condition2(x)
+
+        for i in range(len(points) - params.c_pts - params.d_pts - 2):
+            A = points[i]
+            Vertex = points[i + params.c_pts + 1]
+            B = points[i + params.c_pts + params.d_pts + 2]
+
+            angle = calculate_angle(A, Vertex, B)
+            validAngle = angle is not None and angle >= 0
+
+            if validAngle and angleInTolerance(angle):
                 return True
 
         return False
