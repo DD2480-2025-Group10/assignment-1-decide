@@ -237,6 +237,7 @@ class LIC8:
 
         return False
 
+
 @dataclass(frozen=True)
 class LIC9:
     ident: int = 9
@@ -254,9 +255,9 @@ class LIC9:
         if len(points) < 5:
             return False
 
-        condition1 = lambda x : x < Pi - params.epsilon
-        condition2 = lambda x : x > Pi + params.epsilon
-        angleInTolerance = lambda x : condition1(x) or condition2(x)
+        condition1 = lambda x: x < Pi - params.epsilon
+        condition2 = lambda x: x > Pi + params.epsilon
+        angleInTolerance = lambda x: condition1(x) or condition2(x)
 
         for i in range(len(points) - params.c_pts - params.d_pts - 2):
             A = points[i]
@@ -270,7 +271,6 @@ class LIC9:
                 return True
 
         return False
-
 
 
 @dataclass(frozen=True)

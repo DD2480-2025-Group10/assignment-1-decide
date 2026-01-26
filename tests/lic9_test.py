@@ -2,6 +2,7 @@ from src.lics import LIC9
 from src.types import Parameters_T, PointList
 from src.utils import Pi
 
+
 def test_calculate_lic_9_positive():
     # Test where with small epsilon, the angle condition is met
     # the angle inside condition should almost always be met
@@ -20,9 +21,18 @@ def test_calculate_lic_9_positive():
 
     # test with other d_pts and c_pts
     params = Parameters_T(c_pts=2, d_pts=2, epsilon=0.00)
-    points = [(0.0, 1.0), (1.0, 0.0), (1.0, 0.0), (0.0, 0.0), (0.0, 0.0), (0.0, 1.0), (-1.0, -1.0)]
+    points = [
+        (0.0, 1.0),
+        (1.0, 0.0),
+        (1.0, 0.0),
+        (0.0, 0.0),
+        (0.0, 0.0),
+        (0.0, 1.0),
+        (-1.0, -1.0),
+    ]
 
     assert LIC9().evaluate(points, params) is True
+
 
 def test_calculate_lic_9_negative():
     # Test where NUMPOINTS < 5
@@ -32,7 +42,7 @@ def test_calculate_lic_9_negative():
     assert LIC9().evaluate(points, params) is False
 
     # Test where all points are conincient
-    points: PointList = [(0.0, 0.0),(0.0, 0.0),(0.0, 0.0),(0.0, 0.0),(0.0, 0.0)]
+    points: PointList = [(0.0, 0.0), (0.0, 0.0), (0.0, 0.0), (0.0, 0.0), (0.0, 0.0)]
 
     assert LIC9().evaluate(points, params) is False
 
