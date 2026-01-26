@@ -148,7 +148,26 @@ class LIC4:
 
         return False
 
+@dataclass(frozen=True)
+class LIC5:
+    ident: int = 5
+    """    
+    Evaluates LiC5: Checks if there's any 2 points in the X axis where the 
+    following element is larger than the previous, if so it returns true otherwise
+    false. 
+    """
+    def evaluate(self, points: PointList, params: Parameters_T) -> bool:
+        if len(points) < 2:
+            return False
 
+        for i in range(len(points) - 1):
+            p1 = points[i]
+            p2 = points[i + 1]
+            # checks specified condition on X-axis
+            if p2[0] - p1[0] < 0:
+                return True
+
+        return False
 @dataclass(frozen=True)
 class LIC6:
     ident: int = 6
