@@ -59,7 +59,7 @@ DefaultCmvBuilder = (
     .register_lic(LIC2())
     .register_lic(LIC3())
     .register_lic(LIC4())
-    .register_lic(LIC5()) 
+    .register_lic(LIC5())
     .register_lic(LIC6())
     .register_lic(LIC7())
     .register_lic(LIC8())

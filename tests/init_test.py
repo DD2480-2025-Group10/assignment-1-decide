@@ -27,5 +27,3 @@ def load_data(path: str) -> Data:
         puv=data["PUV"],
         expected_launch=bool(data["EXPECTED"]["LAUNCH"]),
     )
-
-

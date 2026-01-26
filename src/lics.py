@@ -148,6 +148,7 @@ class LIC4:
 
         return False
 
+
 @dataclass(frozen=True)
 class LIC5:
     ident: int = 5
@@ -156,6 +157,7 @@ class LIC5:
     following element is larger than the previous, if so it returns true otherwise
     false. 
     """
+
     def evaluate(self, points: PointList, params: Parameters_T) -> bool:
         if len(points) < 2:
             return False
@@ -168,6 +170,8 @@ class LIC5:
                 return True
 
         return False
+
+
 @dataclass(frozen=True)
 class LIC6:
     ident: int = 6
