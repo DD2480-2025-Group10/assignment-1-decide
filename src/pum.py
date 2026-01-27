@@ -1,5 +1,4 @@
 from src.types import CONNECTORS
-from src.types import PUM
 
 
 class PumBuilder:
