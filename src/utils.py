@@ -27,6 +27,12 @@ FUV: list[bool]
 
 LAUNCH: bool
 
+# array of 15 booleans - ADD THIS LINE
+PUV: list[bool] 
+
+# array of 15 booleans
+FUV: list[bool]
+
 
 # floating point
 def double_compare(a: float, b: float, eps: float = 1e-6) -> COMPTYPE:

@@ -38,3 +38,4 @@ class Parameters_T:
     length2: float = 0.0  # Maximum length in LIC 12
     radius2: float = 0.0  # Maximum radius in LIC 13
     area2: float = 0.0  # Maximum area in LIC 14
+    
