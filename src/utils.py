@@ -44,7 +44,6 @@ def double_compare(a: float, b: float, eps: float = 1e-6) -> COMPTYPE:
     return COMPTYPE.GT
 
 
-
 def load_data(path: str) -> Data:
     """
     helper function for turning json files into input for decide()
@@ -61,7 +60,9 @@ def load_data(path: str) -> Data:
         parameters=data["PARAMETERS"],
         lcm=data["LCM"],
         puv=data["PUV"],
-        expected_launch=bool(data["EXPECTED"]["LAUNCH"]) if "EXPECTED" in data else None,
+        expected_launch=bool(data["EXPECTED"]["LAUNCH"])
+        if "EXPECTED" in data
+        else None,
     )
 
 

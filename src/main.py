@@ -47,9 +47,7 @@ if __name__ == "__main__":
         puv=[bool(v) for v in input.puv],
     )
 
-    if result: 
+    if result:
         print("LAUNCH")
-    else: 
+    else:
         print("DO NOT LAUNCH")
-
-

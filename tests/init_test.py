@@ -1,6 +1,7 @@
 from src.main import *
 from src.utils import load_data, expand_lcm
 
+
 def test_decide_case0_false():
     # Fails because the only required condition (LIC0) is not met.
     # Distance between points (0,0) and (1,0) is 1.0, which is NOT > LENGTH1 (5.0).

@@ -5,6 +5,7 @@ from typing import Any, Optional
 Point = tuple[float, float]
 PointList = list[Point]
 
+
 @dataclass
 class Data:
     numpoints: int
@@ -14,6 +15,7 @@ class Data:
     lcm: dict[str, Any]
     puv: list[int]
     expected_launch: Optional[bool]
+
 
 class CONNECTORS(Enum):
     NOTUSED = 777
