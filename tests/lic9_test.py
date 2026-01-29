@@ -11,6 +11,7 @@ from src.utils import Pi
 # point or the last point (or both) coincide with the vertex, the angle is undefined and the LIC
 # is not satisfied by those three points. When NUMPOINTS < 5, the condition is not met.
 
+
 def test_calculate_lic_9_positive():
     # Test where with small epsilon, the angle condition is met
     # the angle inside condition should almost always be met

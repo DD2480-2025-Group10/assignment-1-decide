@@ -10,7 +10,6 @@ from src.types import Parameters_T, PointList
 # not met when NUMPOINTS < 5.
 
 
-
 def test_calculate_lic_13_positive():
     # A=1, B=1 -> triples (0,2,4) and (1,3,5)
     # (0,2,4) is 3-4-5 -> cannot fit r1=2.4

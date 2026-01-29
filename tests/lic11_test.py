@@ -40,7 +40,6 @@ def test_calculate_lic_11_positive():
     assert LIC11().evaluate(points, params) is True
 
 
-
 def test_calculate_lic_11_negative():
     # i = 0, j = 0 + G_PTS + 1 = 2 -> xj - xi = 3.0 - 1.0 is NOT < 0 -> False
     points: PointList = [

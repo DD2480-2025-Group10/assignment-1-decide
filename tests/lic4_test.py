@@ -26,7 +26,7 @@ def test_calculate_lic_4_negative():
     # No set of 3 consecutive points lie in more than 2 quadrants
     assert LIC4().evaluate(points, params) == False
 
-    # Cannot be satisfied under normal program function be satisfied 
+    # Cannot be satisfied under normal program function be satisfied
     # two points cannot lie in more than 2 quadrants
     points: PointList = [(1, 1), (0, 0), (-1, -1)]
     params = Parameters_T(quads=2, q_pts=2)

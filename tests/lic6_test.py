@@ -30,8 +30,6 @@ def test_calculate_lic_6_negative():
 
     assert LIC6().evaluate(points, params) == False
 
-    # Less three points always invalid 
+    # Less three points always invalid
     points: PointList = [(0, 0), (2, 2)]
     assert LIC6().evaluate(points, params) == False
-
-
