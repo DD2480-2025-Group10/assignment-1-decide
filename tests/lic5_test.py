@@ -17,6 +17,16 @@ def test_calculate_lic_5_positive():
 
     assert LIC5().evaluate(points, params) is True
 
+    # Not at the beginning of the list
+    points: PointList = [
+        (1.0, 5.0),
+        (2.0, 2.0),
+        (3.0, 2.0),
+        (0.0, 2.0),
+    ]
+
+    assert LIC5().evaluate(points, params) is True
+
 
 def test_calculate_lic_5_negative():
     # X[1] (2.0) - X[0] (1.0) = 1.0 (>= 0)
@@ -32,15 +42,11 @@ def test_calculate_lic_5_negative():
 
     assert LIC5().evaluate(points, params) is False
 
-
-def test_calculate_lic_5_boundary_equal_x():
-    # X[1] (1.0) - X[0] (1.0) = 0.0
-    # 0.0 is NOT < 0, so this should be False.
+    # Equal boundary case 
     points: PointList = [
         (1.0, 5.0),
         (1.0, 2.0),
     ]
 
-    params = Parameters_T()
-
     assert LIC5().evaluate(points, params) is False
+
