@@ -2,6 +2,8 @@ from src.cmv import *
 from src.utils import *
 from src.fuv import *
 from src.pum import *
+from src.types import *
+import sys
 
 
 # function you must write
@@ -32,13 +34,22 @@ def decide(
 
     fuv = DefaultFuvBuilder.build(puv, pum)
 
-    # Iff all entries in FUV are true we launch
-    if all(fuv):
-        print("The rockets are launched")
-    else:
-        print("No rockets are launched")
     return all(fuv)
 
 
 if __name__ == "__main__":
-    decide()
+    input = load_data(sys.argv[1])
+
+    result = decide(
+        points=list(zip(input.x, input.y)),
+        parameters=Parameters_T(**input.parameters),
+        lcm=expand_lcm(input.lcm),
+        puv=[bool(v) for v in input.puv],
+    )
+
+    if result: 
+        print("LAUNCH")
+    else: 
+        print("DO NOT LAUNCH")
+
+
