@@ -28,7 +28,7 @@ FUV: list[bool]
 LAUNCH: bool
 
 # array of 15 booleans - ADD THIS LINE
-PUV: list[bool] 
+PUV: list[bool]
 
 # array of 15 booleans
 FUV: list[bool]

@@ -1,7 +1,8 @@
 from src.cmv import *
 from src.utils import *
-
+from src.fuv import *
 from src.pum import *
+
 
 # function you must write
 def decide(
@@ -16,7 +17,7 @@ def decide(
     The function follows a three-stage pipeline:
     1. CMV: Evaluates 15 Launch Interceptor Conditions (LICs).
     2. PUM: Combines CMV results with the Logical Connector Matrix (LCM).
-    3. FUV: Masks the PUM with the Preliminary Unlocking Vector (PUV) to 
+    3. FUV: Masks the PUM with the Preliminary Unlocking Vector (PUV) to
        generate the Final Unlocking Vector.
 
     :param points: A list of (x, y) coordinates representing radar echoes.
@@ -26,23 +27,16 @@ def decide(
     :return: True if all conditions in the FUV are met, else False.
     """
     cmv = DefaultCmvBuilder.build(points, parameters)
-    print("CMV:", cmv)
 
     pum = DefaultPumBuilder.build(cmv, lcm)
-    print("PUM row 0:", pum[0])
 
-    fuv = [False] * 15
-    for i in range(15):
-        if not puv[i]:
-            fuv[i] = True
-        else:
-            fuv[i] = all(pum[i][j] for j in range(15))
+    fuv = DefaultFuvBuilder.build(puv, pum)
 
-        print(f"FUV[{i}] =", fuv[i])
-
-    print("Final FUV:", fuv)
-    print("LAUNCH:", all(fuv))
-
+    # Iff all entries in FUV are true we launch
+    if all(fuv):
+        print("The rockets are launched")
+    else:
+        print("No rockets are launched")
     return all(fuv)
 
 
