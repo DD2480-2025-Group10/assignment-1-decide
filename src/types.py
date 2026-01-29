@@ -1,8 +1,20 @@
 from dataclasses import dataclass
 from enum import Enum, auto
+from typing import Any, Optional
 
 Point = tuple[float, float]
 PointList = list[Point]
+
+
+@dataclass
+class Data:
+    numpoints: int
+    x: list[float]
+    y: list[float]
+    parameters: dict[str, Any]
+    lcm: dict[str, Any]
+    puv: list[int]
+    expected_launch: Optional[bool]
 
 
 class CONNECTORS(Enum):

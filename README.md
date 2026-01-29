@@ -37,6 +37,53 @@ To add new dependencies, you need to update the **dependencies** list in `pyproj
 pip install -e .
 ```
 
+# Running the project
+The project runs through the `main.py` file located in the `src` directory. As input it takes one command line argument, pointing to a filename containing the required input data. The input file must be in `.json` format and follow the structure as described in the example below:
+```json
+{
+  "NUMPOINTS": 2,
+  "X": [0.0, 1.0],
+  "Y": [0.0, 0.0],
+
+  "PARAMETERS": {
+    "length1": 5.0,
+    "radius1": 1.0,
+    "epsilon": 0.1,
+    "area": 1.0,
+    "q_pts": 2,
+    "quads": 1,
+    "dist": 1.0,
+    "n_pts": 3,
+    "k_pts": 1,
+    "a_pts": 1,
+    "b_pts": 1,
+    "c_pts": 1,
+    "d_pts": 1,
+    "e_pts": 1,
+    "f_pts": 1,
+    "g_pts": 1,
+    "length2": 2.0,
+    "radius2": 2.0,
+    "area2": 2.0
+  },
+
+  "LCM": {
+    "default": "NOTUSED",
+    "overrides": [
+      { "i": 0, "j": 0, "value": "ANDD" }
+    ]
+  },
+
+  "PUV": [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+}
+```
+
+To run the project with a file use the following command: 
+```bash
+python3 src/main.py path/to/input_file.json
+```
+
+*For convenience there are a number of files to try out inside of tests/whole_program_cases*
 
 # Testing the project
 Test files are located in the `tests` directory. Test files must be must be named according to the pattern `test_*.py` or `*_test.py`. To run the tests, use the following command:
