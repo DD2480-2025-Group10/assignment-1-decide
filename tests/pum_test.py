@@ -50,6 +50,6 @@ def test_pum_orr():
     lcm[1][2] = CONNECTORS.ORR  # False ORR False -> False
 
     pum = DefaultPumBuilder.build(cmv, lcm)
-    print(pum)
+
     assert pum[0][1] is True
     assert pum[1][2] is False
