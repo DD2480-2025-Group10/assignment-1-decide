@@ -59,4 +59,53 @@ ruff check .
 ```
 
 # Way of working
-Based on the checklist in the Essence standard v1.2, we assess our current way of working as being in the Collaborating state because we consistently met our commitments and worked efficiently both independently and together, which built trust and kept us focused on the mission. The main obstacles to reaching the next state, Performing, are becoming even more accustomed to one another’s working styles and improving how we assign and prepare work, while also identifying potential problems earlier.
+
+
+## Principles Established
+
+Principles and constraints are committed to by the team. ✅
+
+Principles and constraints are agreed to by the stakeholders. ✅
+
+The tool needs of the work and its stakeholders are agreed.  ✅
+
+A recommendation for the approach to be taken is available. ✅
+
+The context within which the team will operate is understood ✅
+
+The constraints that apply to the selection, acquisition, and use of practices and tools are
+known. ✅
+
+## Foundation Established
+
+The key practices and tools that form the foundation of the way-of-working are
+selected. ✅
+
+Enough practices for work to start are agreed to by the team. ✅
+
+All non-negotiable practices and tools have been identified. ✅
+
+The gaps that exist between the practices and tools that are needed and the practices and
+tools that are available have been analyzed and understood. ✅
+
+The capability gaps that exist between what is needed to execute the desired way of
+working and the capability levels of the team have been analyzed and understood. ✅
+
+The selected practices and tools have been integrated to form a usable way-of-working. ✅
+
+
+## In Use
+
+The practices and tools are being used to do real work. ✅
+
+The use of the practices and tools selected are regularly inspected. ✅
+
+The practices and tools are being adapted to the team’s context. ✅
+
+The use of the practices and tools is supported by the team. ✅
+
+Procedures are in place to handle feedback on the team’s way of working. ❌
+
+The practices and tools support team communication and collaboration. ✅
+
+Based on the checklist in the Essence Standard v1.2, we assess our current way of working as being in the In Use state because we set up a good foundation and came up with a standard, but it was kind of hard to assess due to the assignment being too short. The main obstacles to reaching the next state, In Place, are that we need to set up a system that makes us feel comfortable giving constructive feedback to the team. For this exercise, we didn’t really need to do this too much, as it went quite smoothly, but in the future it will be very valuable.
