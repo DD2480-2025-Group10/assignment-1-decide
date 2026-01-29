@@ -61,7 +61,7 @@ def load_data(path: str) -> Data:
         parameters=data["PARAMETERS"],
         lcm=data["LCM"],
         puv=data["PUV"],
-        expected_launch=bool(data["EXPECTED"]["LAUNCH"]),
+        expected_launch=bool(data["EXPECTED"]["LAUNCH"]) if "EXPECTED" in data else None,
     )
 
 

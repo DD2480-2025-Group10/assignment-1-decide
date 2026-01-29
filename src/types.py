@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from enum import Enum, auto
-from typing import Any
+from typing import Any, Optional
 
 Point = tuple[float, float]
 PointList = list[Point]
@@ -13,7 +13,7 @@ class Data:
     parameters: dict[str, Any]
     lcm: dict[str, Any]
     puv: list[int]
-    expected_launch: bool
+    expected_launch: Optional[bool]
 
 class CONNECTORS(Enum):
     NOTUSED = 777
