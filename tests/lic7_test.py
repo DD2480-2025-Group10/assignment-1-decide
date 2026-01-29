@@ -24,3 +24,7 @@ def test_calculate_lic_7_negative():
 
     # No two points are separated by at least 1 intervening point with distance > 5
     assert LIC7().evaluate(points, params) == False
+
+    # Always invaldi when numpoints < 3
+    points: PointList = [(0, 0), (1, 0)]
+    assert LIC7().evaluate(points, params) == False

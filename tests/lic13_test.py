@@ -1,6 +1,14 @@
 from src.lics import LIC13
 from src.types import Parameters_T, PointList
 
+# There exists at least one set of three data points, separated by exactly A PTS and B PTS
+# consecutive intervening points, respectively, that cannot be contained within or on a circle of
+# radius RADIUS1. In addition, there exists at least one set of three data points (which can be
+# the same or different from the three data points just mentioned) separated by exactly A PTS
+# and B PTS consecutive intervening points, respectively, that can be contained in or on a
+# circle of radius RADIUS2. Both parts must be true for the LIC to be true. The condition is
+# not met when NUMPOINTS < 5.
+
 
 def test_calculate_lic_13_positive():
     # A=1, B=1 -> triples (0,2,4) and (1,3,5)
