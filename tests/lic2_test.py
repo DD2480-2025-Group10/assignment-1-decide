@@ -21,6 +21,15 @@ def test_calculate_lic_2_positive():
 
     assert LIC2().evaluate(points, params) is True
 
+    # Angle = 270 > PI + 0.0 -> True
+    points: PointList = [
+        (0.0, 1.0),
+        (0.0, 0.0),  # vertex
+        (-1.0, -1.0),
+    ]
+    params = Parameters_T(epsilon=0.0)
+    assert LIC2().evaluate(points, params) is True
+
 
 def test_calculate_lic_2_negative():
     # Angle = 180 degrees ~ PI rad NOT < PI - 0.1 -> False
@@ -32,5 +41,14 @@ def test_calculate_lic_2_negative():
     ]
 
     params = Parameters_T(epsilon=0.1)
+
+    assert LIC2().evaluate(points, params) is False
+
+    # Point that coincides with vertex -> angle undefined -> False
+    points: PointList = [
+        (-1.0, 0.0),
+        (0.0, 0.0),  # vertex
+        (0.0, 0.0),
+    ]
 
     assert LIC2().evaluate(points, params) is False
