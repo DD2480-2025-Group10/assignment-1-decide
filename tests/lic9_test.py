@@ -2,6 +2,14 @@ from src.lics import LIC9
 from src.types import Parameters_T, PointList
 from src.utils import Pi
 
+# There exists at least one set of three data points separated by exactly C PTS and D PTS
+# consecutive intervening points, respectively, that form an angle such that:
+# angle < (PI−EPSILON)
+# or
+# angle > (PI+EPSILON)
+# The second point of the set of three points is always the vertex of the angle. If either the first
+# point or the last point (or both) coincide with the vertex, the angle is undefined and the LIC
+# is not satisfied by those three points. When NUMPOINTS < 5, the condition is not met.
 
 def test_calculate_lic_9_positive():
     # Test where with small epsilon, the angle condition is met
